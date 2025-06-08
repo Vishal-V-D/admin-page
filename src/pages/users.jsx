@@ -218,7 +218,7 @@ export default function UsersPage() {
         </div>
         <button
           type="submit"
-          className={`w-full px-4 py-2 rounded-lg text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-75`}
+          className={`w-80 px-4 py-2 rounded-lg text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-75`}
           style={{ backgroundColor: "var(--color-primary)", color: "white" }}
         >
           Invite User

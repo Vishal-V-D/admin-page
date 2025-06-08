@@ -1,13 +1,14 @@
-
 @import "tailwindcss";
 
 /* Base styles for all themes */
 
 body {
-  font-family: 'Manrope', poppins, sans-serif;
+  font-family: 'Manrope', poppins, sans-serif; /* Or 'Inter', sans-serif if that's what you prefer */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
- /* Using Inter font as requested */
 
+/* --- Theme Color Variables --- */
 
 /* Light Theme Colors */
 :root {
@@ -30,6 +31,14 @@ body {
   --color-sidebar-hover: #e5e7eb;
   --color-active-link-bg: #e0e7ff; /* Light blue for active link */
   --color-active-link-text: #3b82f6;
+  --color-card-header-1: #6366f1; /* Indigo 500 */
+  --color-card-header-2: #8b5cf6; /* Violet 500 */
+  --color-card-header-3: #3b82f6; /* Blue 500 (Primary) */
+  --color-card-header-4: #22c55e; /* Green 500 */
+  --color-card-header-5: #ef4444; /* Red 500 */
+  --color-card-header-6: #ec4899; /* Pink 500 */
+  --color-card-header-7: #eab308; /* Yellow 500 */
+  --color-card-header-8: #14b8a6; 
 }
 
 /* Dark Theme Colors */
@@ -52,7 +61,15 @@ body {
   --color-sidebar-text: #9ca3af;
   --color-sidebar-hover: #374151; /* Gray 700 */
   --color-active-link-bg: #374151; /* Darker gray for active link */
-  --color-active-link-text: #93c5fd; /* Light blue for active link */
+  --color-active-link-text: #93c5fd; 
+   --color-card-header-1: #4f46e5; /* Indigo 600 */
+  --color-card-header-2: #7c3aed; /* Violet 600 */
+  --color-card-header-3: #2563eb; /* Blue 600 (Primary) */
+  --color-card-header-4: #16a34a; /* Green 600 */
+  --color-card-header-5: #dc2626; /* Red 600 */
+  --color-card-header-6: #db2777; /* Pink 600 */
+  --color-card-header-7: #d97706; /* Yellow 600 */
+  --color-card-header-8: #0d9488; /* Teal 600 *//* Light blue for active link */
 }
 
 /* Oceanic Theme Colors */
@@ -76,9 +93,18 @@ body {
   --color-sidebar-hover: #1a4253;
   --color-active-link-bg: #1a4253;
   --color-active-link-text: #66cdaa;
+   --color-card-header-1: #0a738a; /* Deep Teal (similar to Primary) */
+  --color-card-header-2: #17a2b8; /* Cyan (similar to Secondary) */
+  --color-card-header-3: #66cdaa; /* Medium Aquamarine (similar to Accent) */
+  --color-card-header-4: #3d8c82; /* Muted Green */
+  --color-card-header-5: #b85042; /* Burnt Orange/Red */
+  --color-card-header-6: #8a305a; /* Deep Rose */
+  --color-card-header-7: #d9b300; /* Muted Gold */
+  --color-card-header-8: #4b6a80; 
 }
 
-/* Custom Keyframes for Animations */
+/* --- Custom Keyframes for Animations --- */
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -94,20 +120,94 @@ body {
   to { transform: translateX(0); opacity: 1; }
 }
 
-/* Apply animations using utility classes in components */
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-out forwards;
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-slideInLeft {
-  animation: slideInLeft 0.5s ease-out forwards;
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-slideInRight {
-  animation: slideInRight 0.5s ease-out forwards;
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }
 
-/* Custom scrollbar for a modern look */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); } /* Slightly larger pulse */
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes bounce-h { /* Horizontal bounce for icons */
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+@keyframes spin-once { /* Spins once */
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-slow { /* Continuous slow spin */
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blob { /* Background blob shape transformation */
+  0% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40%/50% 60% 30% 60%; }
+  100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+}
+
+
+/* --- Apply animations using Tailwind Utility Classes --- */
+
+/* Existing animations */
+.animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
+.animate-slideInLeft { animation: slideInLeft 0.5s ease-out forwards; }
+.animate-slideInRight { animation: slideInRight 0.5s ease-out forwards; }
+
+/* Newly added animations */
+.animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+.animate-fade-in-down { animation: fadeInDown 0.8s ease-out forwards; }
+.animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+.animate-bounce-in { animation: bounceIn 0.8s ease-out forwards; }
+.animate-pulse-on-hover:hover { animation: pulse 1s infinite; }
+.animate-shake { animation: shake 0.5s ease-in-out; }
+
+/* Group hover animations for icons inside buttons */
+.group:hover .group-hover\:animate-bounce-h {
+  animation: bounce-h 0.6s ease-in-out infinite;
+}
+.group:hover .group-hover\:animate-spin-once {
+  animation: spin-once 0.8s ease-out; /* Plays once on hover */
+}
+
+/* For the pending approval spinner */
+.animate-spin-slow {
+  animation: spin-slow 2s linear infinite;
+}
+
+/* Background blob animations */
+.animate-blob {
+  animation: blob 7s infinite linear, fadeIn 2s forwards; /* Combines blob shape with fade in */
+}
+/* Staggered animation delays for blobs */
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+
+/* --- Custom scrollbar for a modern look --- */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -128,7 +228,7 @@ body {
   background: var(--color-primary);
 }
 
-/* Specific styles for Recharts components in dark and oceanic modes */
+/* --- Specific styles for Recharts components in dark and oceanic modes --- */
 .dark .recharts-surface,
 .oceanic .recharts-surface {
   background-color: var(--color-card-bg) !important;
@@ -154,8 +254,17 @@ body {
   stroke: var(--color-border) !important;
 }
 
-/* General Link/Button Focus styles */
+/* --- General Link/Button Focus styles (Enhanced) --- */
 button:focus, a:focus, input:focus, select:focus {
   outline: none;
-  box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-secondary);
+  /* Using Tailwind's ring utilities is generally preferred if possible,
+     but this fallback is robust. Adjust ring color to match your theme */
+  box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-primary);
+}
+
+/* Custom styles for select element's default arrow (to hide it) */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
